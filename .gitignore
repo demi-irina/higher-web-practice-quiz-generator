@@ -1,9 +1,8 @@
 # dependencies
-/node_modules
+node_modules/
 
 # build dir
-/dist
-
+dist/
 
 # Temporary folders
 tmp/
