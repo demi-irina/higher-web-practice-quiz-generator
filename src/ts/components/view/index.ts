@@ -1,2 +1,4 @@
 export * from "./quiz-generator";
 export * from "./toast";
+export * from "./quizzes";
+export * from "./quiz-card";

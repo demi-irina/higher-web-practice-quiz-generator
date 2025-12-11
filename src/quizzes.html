@@ -4,9 +4,49 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Ваши квизы</title>
+		<link rel="stylesheet" href="./css/base/variables.css" />
+		<link rel="stylesheet" href="./css/base/base.css" />
 		<link rel="stylesheet" href="./css/pages/quizzes.css" />
 	</head>
 	<body>
+		<header class="header">
+			<div class="header__inner">
+				<div class="header__brand">
+					<img class="header__logo" src="./assets/logo.svg" alt="Логотип" />
+				</div>
+				<nav class="header__nav">
+					<a class="button button--primary" href="./index.html">Добавить квиз</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="main">
+			<section class="quizzes">
+				<h1 class="quizzes__title">Ваши квизы</h1>
+				<div class="quizzes__grid"></div>
+				<div class="quizzes__empty" hidden>
+					<h1 class="quizzes__empty-title">У вас нет сохранённых квизов(</h1>
+					<p class="quizzes__empty-subtitle">Но вы можете добавить!</p>
+					<a class="button button--primary" href="./index.html">Добавить квиз</a>
+				</div>
+			</section>
+		</main>
+
+		<template id="quiz-card-template">
+			<div class="quiz-card">
+				<h3 class="quiz-card__title"></h3>
+				<p class="quiz-card__description"></p>
+				<div class="quiz-card__footer">
+					<div class="quiz-card__count">0 вопросов</div>
+					<a class="link quiz-card__action" href="#">Пройти</a>
+				</div>
+			</div>
+		</template>
+
+		<footer class="footer">
+			<div class="footer__inner">Учебный проект 2025</div>
+		</footer>
+
 		<script type="module" src="./ts/pages/quizzes.ts"></script>
 	</body>
 </html>
