@@ -4,9 +4,56 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Генератор квизов</title>
+		<link rel="stylesheet" href="./css/base/variables.css" />
+		<link rel="stylesheet" href="./css/base/base.css" />
 		<link rel="stylesheet" href="./css/pages/index.css" />
 	</head>
 	<body>
+		<header class="header">
+			<div class="header__inner">
+				<div class="header__brand">
+					<img class="header__logo" src="./assets/logo.svg" alt="Логотип" />
+				</div>
+				<nav class="header__nav">
+					<a class="button button--secondary" href="./quizzes.html">Посмотреть сохранённые квизы</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="main">
+			<section class="generator">
+				<h1 class="generator__title">Генератор квизов</h1>
+				<p class="generator__hint">Вставьте JSON...</p>
+				<form class="generator__form">
+					<label class="generator__label" for="quiz-json-input">Ваш JSON</label>
+					<textarea
+						id="quiz-json-input"
+						name="quiz-json-input"
+						class="generator__textarea"
+						placeholder="{&#10;&laquo;title&raquo;: &laquo;Placeholder&raquo;,&#10;&laquo;questions&raquo;: []&#10;}"
+					></textarea>
+					<div class="generator__actions">
+						<button type="submit" class="button button--primary">Сгенерировать</button>
+					</div>
+				</form>
+			</section>
+		</main>
+
+		<div class="toast toast--error" id="error-toast" hidden>
+			<div class="toast__icon">&#10060;</div>
+			<div class="toast__content">
+				<p class="toast__title">Ошибка: не удалось обработать JSON.</p>
+				<p class="toast__message">Проверьте формат данных и попробуйте снова.</p>
+			</div>
+			<div class="toast__actions">
+				<button type="button" class="button button--secondary toast__action">Попробовать снова</button>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="footer__inner">Учебный проект 2025</div>
+		</footer>
+
 		<script type="module" src="./ts/pages/main.ts"></script>
 	</body>
 </html>
