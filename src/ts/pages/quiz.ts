@@ -4,7 +4,8 @@ import {
 	QuestionView,
 	QuizContentView,
 	QuizHeadView,
-	QuizProgressView
+	QuizProgressView,
+	QuizSectionView
 } from "../components/view";
 import { QuizSessionModel } from "../components/model";
 import { quizDatabase } from "../utils/storage";
@@ -64,9 +65,10 @@ function renderQuestion(question: QuizQuestion, answer?: string[], result?: Quiz
 	});
 }
 
-const quizHead = document.querySelector<HTMLElement>(".quiz__head");
-const quizProgress = document.querySelector<HTMLElement>(".quiz__progress");
-const quizContent = document.querySelector<HTMLElement>(".quiz__content");
+const quizSection = document.querySelector<HTMLElement>(".quiz");
+const quizHead = quizSection?.querySelector<HTMLElement>(".quiz__head");
+const quizProgress = quizSection?.querySelector<HTMLElement>(".quiz__progress");
+const quizContent = quizSection?.querySelector<HTMLElement>(".quiz__content");
 const resultModal = document.querySelector<HTMLElement>("#result-modal");
 const singleQuestionTemplate = document.querySelector<HTMLTemplateElement>("#single-question-template");
 const multipleQuestionTemplate = document.querySelector<HTMLTemplateElement>("#multiple-question-template");
@@ -74,6 +76,7 @@ const radioOptionTemplate = document.querySelector<HTMLTemplateElement>("#option
 const checkboxOptionTemplate = document.querySelector<HTMLTemplateElement>("#checkbox-option-template");
 
 if (
+	!quizSection ||
 	!quizHead ||
 	!quizProgress ||
 	!quizContent ||
@@ -97,6 +100,7 @@ if (!quiz) {
 	throw new Error("Quiz not found");
 }
 
+const quizSectionView = new QuizSectionView(quizSection, { events });
 const quizHeadView = new QuizHeadView(quizHead, { events });
 const quizProgressView = new QuizProgressView(quizProgress, { events });
 const quizContentView = new QuizContentView(quizContent, { events });
@@ -119,6 +123,7 @@ events.on(EVENTS.QUIZ_ANSWER_RESULT, ({ question, result, answer, isLast }) => {
 });
 
 events.on(EVENTS.QUIZ_SESSION_FINISHED, ({ correctCount, total }) => {
+	quizSectionView.render({ isVisible: false });
 	modalView.render({
 		data: {
 			title: "Тест завершен",
@@ -138,6 +143,7 @@ events.on(EVENTS.QUIZ_NEXT, () => {
 });
 
 events.on(EVENTS.QUIZ_RESTART, () => {
+	quizSectionView.render({ isVisible: true });
 	modalView.render({ isOpen: false });
 	session.restart();
 });
