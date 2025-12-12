@@ -4,13 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Генератор квизов</title>
-		<link rel="stylesheet" href="./css/base/variables.css" />
-		<link rel="stylesheet" href="./css/base/base.css" />
 		<link rel="stylesheet" href="./css/pages/index.css" />
 	</head>
 	<body>
 		<header class="header">
-			<div class="header__inner">
+			<div class="header__inner layout-container">
 				<div class="header__brand">
 					<img class="header__logo" src="./assets/logo.svg" alt="Логотип" />
 				</div>
@@ -20,7 +18,7 @@
 			</div>
 		</header>
 
-		<main class="main">
+		<main class="main layout-container layout-grid">
 			<section class="generator">
 				<h1 class="generator__title">Генератор квизов</h1>
 				<p class="generator__hint">Вставьте JSON...</p>
@@ -51,7 +49,7 @@
 		</div>
 
 		<footer class="footer">
-			<div class="footer__inner">Учебный проект 2025</div>
+			<div class="footer__inner layout-container">Учебный проект 2025</div>
 		</footer>
 
 		<script type="module" src="./ts/pages/main.ts"></script>
