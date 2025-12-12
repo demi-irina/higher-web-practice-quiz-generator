@@ -11,6 +11,7 @@ import { quizDatabase } from "../utils/storage";
 import { events } from "../utils/events";
 import type { QuizAnswerResult, QuizQuestion } from "../types";
 import { EVENTS } from "../types";
+import { cloneTemplateContent } from "../utils/dom";
 
 function getQuizIdFromUrl(): string | null {
 	const params = new URLSearchParams(window.location.search);
@@ -22,16 +23,6 @@ function setQuestionNumToUrl(index: number) {
 	params.set("q", String(index + 1));
 	const newUrl = `${window.location.pathname}?${params.toString()}`;
 	window.history.replaceState({}, "", newUrl);
-}
-
-function cloneTemplateContent(template: HTMLTemplateElement): HTMLElement {
-	const element = template.content.firstElementChild?.cloneNode(true) as HTMLElement | null;
-
-	if (!element) {
-		throw new Error("Clone template error");
-	}
-
-	return element;
 }
 
 function renderQuestion(question: QuizQuestion, answer?: string[], result?: QuizAnswerResult, isLast?: boolean) {
