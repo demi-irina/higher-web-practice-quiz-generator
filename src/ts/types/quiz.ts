@@ -6,6 +6,15 @@ export type QuizOption = z.infer<typeof QuizOptionSchema>;
 export type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
 export type QuizData = z.infer<typeof QuizSchema>;
 
+export type QuizAnswerResult = {
+	isCorrect: boolean;
+	texts: {
+		id: number;
+		message: string;
+		isSuccess: boolean;
+	}[];
+};
+
 export interface QuizRecord extends QuizData {
 	id: string;
 }

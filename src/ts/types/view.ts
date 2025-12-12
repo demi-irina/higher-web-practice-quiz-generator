@@ -1,6 +1,6 @@
 import type { IEvents } from "./base";
 import type { IEventsMap } from "./event";
-import { QuizRecord } from "./quiz";
+import type { QuizOption, QuizQuestion, QuizRecord } from "./quiz";
 
 export interface IBaseViewSettings {
 	events: IEvents<IEventsMap>;
@@ -30,3 +30,63 @@ export interface IQuizzesViewData {
 }
 
 export type IQuizzesViewSettings = IBaseViewSettings;
+
+export interface IOptionViewData {
+	option: QuizOption;
+	disabled: boolean;
+	checked: boolean;
+	result?: {
+		text: string;
+		isSuccess: boolean;
+	};
+}
+
+export type IOptionViewSettings = IBaseViewSettings;
+
+export interface IQuestionViewData {
+	text: string;
+	optionElements: HTMLElement[];
+}
+
+export type IQuestionViewSettings = IBaseViewSettings;
+
+export interface IQuizContentViewData {
+	questionElement: HTMLElement;
+	questionType: QuizQuestion["type"];
+	showSubmit: boolean;
+	showNext: boolean;
+	nextLabel?: string;
+}
+
+export type IQuizContentViewSettings = IBaseViewSettings;
+
+export interface IQuizHeadViewData {
+	title: string;
+	description: string;
+}
+
+export type IQuizHeadViewSettings = IBaseViewSettings;
+
+export interface IQuizProgressViewData {
+	currentIndex: number;
+	total: number;
+}
+
+export type IQuizProgressViewSettings = IBaseViewSettings;
+
+export interface IQuizSectionViewData {
+	isVisible: boolean;
+}
+
+export type IQuizSectionViewSettings = IBaseViewSettings;
+
+export interface IModalViewData {
+	data?: {
+		title: string;
+		subtitle: string;
+		message: string;
+	};
+	isOpen: boolean;
+}
+
+export type IModalViewSettings = IBaseViewSettings;
