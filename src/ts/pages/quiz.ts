@@ -26,6 +26,13 @@ function setQuestionNumToUrl(index: number) {
 	window.history.replaceState({}, "", newUrl);
 }
 
+function removeQuestionNumFromUrl() {
+	const params = new URLSearchParams(window.location.search);
+	params.delete("q");
+	const newUrl = `${window.location.pathname}?${params.toString()}`;
+	window.history.replaceState({}, "", newUrl);
+}
+
 function renderQuestion(question: QuizQuestion, answer?: string[], result?: QuizAnswerResult, isLast?: boolean) {
 	const questionTemplate = question.type === "single" ? singleQuestionTemplate : multipleQuestionTemplate;
 	const optionTemplate = question.type === "single" ? radioOptionTemplate : checkboxOptionTemplate;
@@ -132,6 +139,7 @@ events.on(EVENTS.QUIZ_SESSION_FINISHED, ({ correctCount, total }) => {
 		},
 		isOpen: true
 	});
+	removeQuestionNumFromUrl();
 });
 
 events.on(EVENTS.QUIZ_ANSWER_SUBMIT, ({ answer }) => {
