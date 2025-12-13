@@ -16,9 +16,3 @@
 .toast__content {
 	margin-bottom: var(--space-16);
 }
-
-.toast__message {
-	font-size: var(--font-caption-size);
-	line-height: var(--font-caption-line);
-	color: var(--color-text-secondary);
-}

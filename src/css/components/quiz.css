@@ -39,9 +39,6 @@
 }
 
 .question__hint {
-	font-size: var(--font-caption-size);
-	line-height: var(--font-caption-line);
-	color: var(--color-text-secondary);
 	margin-bottom: var(--space-24);
 }
 
@@ -90,8 +87,5 @@
 }
 
 .option__message {
-	font-size: var(--font-caption-size);
-	line-height: var(--font-caption-line);
-	color: var(--color-text-secondary);
 	padding: 0 var(--space-16);
 }

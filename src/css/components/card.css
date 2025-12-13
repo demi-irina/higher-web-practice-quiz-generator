@@ -28,12 +28,6 @@
 	margin-bottom: var(--space-16);
 }
 
-.quiz-card__count {
-	font-size: var(--font-caption-size);
-	line-height: var(--font-caption-line);
-	color: var(--color-text-secondary);
-}
-
 .quiz-card__footer {
 	display: flex;
 	justify-content: space-between;

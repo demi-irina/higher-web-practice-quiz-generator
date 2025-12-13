@@ -62,6 +62,12 @@ p {
 	row-gap: var(--grid-gutter);
 }
 
+.caption {
+	font-size: var(--font-caption-size);
+	line-height: var(--font-caption-line);
+	color: var(--color-text-secondary);
+}
+
 .button {
 	display: inline-flex;
 	align-items: center;

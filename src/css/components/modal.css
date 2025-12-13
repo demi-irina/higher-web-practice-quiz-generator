@@ -22,9 +22,6 @@
 }
 
 .modal__message {
-	font-size: var(--font-caption-size);
-	line-height: var(--font-caption-line);
-	color: var(--color-text-secondary);
 	margin-bottom: var(--space-24);
 }
 
