@@ -72,6 +72,32 @@ function renderQuestion(question: QuizQuestion, answer?: string[], result?: Quiz
 	});
 }
 
+function getResultModalData(correctCount: number, total: number) {
+	const ratio = correctCount / total;
+
+	if (ratio === 1) {
+		return {
+			title: "Тест завершён!",
+			subtitle: `Вы ответили правильно на все вопросы 🎉`,
+			message: `Ваши знания на высоте - вы уверенно разбираетесь в теме`
+		};
+	}
+
+	if (ratio > 0.5) {
+		return {
+			title: "Хороший результат!",
+			subtitle: `Вы ответили правильно на ${correctCount} из ${total} вопросов`,
+			message: `Отличная попытка! Вы хорошо понимаете подход, но некоторые темы стоит освежить. Пройдите тест ещё раз, чтобы закрепить знания.`
+		};
+	}
+
+	return {
+		title: "Не расстраивайтесь!",
+		subtitle: `Вы ответили правильно только на ${correctCount} из ${total} вопросов`,
+		message: `Не переживайте - ошибки это часть обучения. Попробуйте пройти тест снова, чтобы закрепить материал и улучшить результат.`
+	};
+}
+
 const quizSection = document.querySelector<HTMLElement>(".quiz");
 const quizHead = quizSection?.querySelector<HTMLElement>(".quiz__head");
 const quizProgress = quizSection?.querySelector<HTMLElement>(".quiz__progress");
@@ -131,14 +157,8 @@ events.on(EVENTS.QUIZ_ANSWER_RESULT, ({ question, result, answer, isLast }) => {
 
 events.on(EVENTS.QUIZ_SESSION_FINISHED, ({ correctCount, total }) => {
 	quizSectionView.render({ isVisible: false });
-	modalView.render({
-		data: {
-			title: "Тест завершен",
-			subtitle: `Вы ответили правильно на ${correctCount} из ${total} вопросов`,
-			message: `Отличная попытка`
-		},
-		isOpen: true
-	});
+	const data = getResultModalData(correctCount, total);
+	modalView.render({ data, isOpen: true });
 	removeQuestionNumFromUrl();
 });
 
