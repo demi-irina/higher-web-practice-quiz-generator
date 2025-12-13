@@ -1,16 +1,18 @@
-import { QuizGeneratorView, ToastView } from "../components/view";
+import { HeaderView, QuizGeneratorView, ToastView } from "../components/view";
 import { quizDatabase } from "../utils/storage";
 import { validateQuizJson } from "../utils/validation";
 import { EVENTS } from "../types";
 import { events } from "../utils/events";
 
+const header = document.querySelector<HTMLElement>(".header");
 const generator = document.querySelector<HTMLElement>(".generator");
 const toastContainer = document.querySelector<HTMLElement>("#error-toast");
 
-if (!generator || !toastContainer) {
+if (!header || !generator || !toastContainer) {
 	throw new Error("MainPage: required elements not found.");
 }
 
+new HeaderView(header);
 const generatorView = new QuizGeneratorView(generator, { events });
 const toastView = new ToastView(toastContainer, { events });
 

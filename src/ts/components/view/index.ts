@@ -9,3 +9,4 @@ export * from "./quiz-progress";
 export * from "./quiz-head";
 export * from "./quiz-section";
 export * from "./modal";
+export * from "./header";

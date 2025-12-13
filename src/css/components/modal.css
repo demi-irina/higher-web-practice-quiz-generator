@@ -30,3 +30,13 @@
 	display: flex;
 	gap: var(--space-8);
 }
+
+@media (max-width: 428px) {
+	.modal__actions {
+		flex-direction: column;
+	}
+
+	.modal__actions .button {
+		flex: 1;
+	}
+}

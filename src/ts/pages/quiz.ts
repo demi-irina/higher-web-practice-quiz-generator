@@ -1,4 +1,5 @@
 import {
+	HeaderView,
 	ModalView,
 	OptionView,
 	QuestionView,
@@ -98,6 +99,7 @@ function getResultModalData(correctCount: number, total: number) {
 	};
 }
 
+const header = document.querySelector<HTMLElement>(".header");
 const quizSection = document.querySelector<HTMLElement>(".quiz");
 const quizHead = quizSection?.querySelector<HTMLElement>(".quiz__head");
 const quizProgress = quizSection?.querySelector<HTMLElement>(".quiz__progress");
@@ -109,6 +111,7 @@ const radioOptionTemplate = document.querySelector<HTMLTemplateElement>("#option
 const checkboxOptionTemplate = document.querySelector<HTMLTemplateElement>("#checkbox-option-template");
 
 if (
+	!header ||
 	!quizSection ||
 	!quizHead ||
 	!quizProgress ||
@@ -133,6 +136,7 @@ if (!quiz) {
 	throw new Error("Quiz not found");
 }
 
+new HeaderView(header);
 const quizSectionView = new QuizSectionView(quizSection, { events });
 const quizHeadView = new QuizHeadView(quizHead, { events });
 const quizProgressView = new QuizProgressView(quizProgress, { events });

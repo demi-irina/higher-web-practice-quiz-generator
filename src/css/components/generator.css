@@ -44,3 +44,19 @@
 .generator__textarea--error {
 	outline: 2px solid var(--color-error);
 }
+
+@media (max-width: 1024px) {
+	.generator {
+		grid-column: span 8;
+	}
+}
+
+@media (max-width: 428px) {
+	.generator {
+		grid-column: span 4;
+	}
+
+	.generator__actions .button {
+		width: 100%;
+	}
+}

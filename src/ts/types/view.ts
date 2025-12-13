@@ -90,3 +90,9 @@ export interface IModalViewData {
 }
 
 export type IModalViewSettings = IBaseViewSettings;
+
+export interface IHeaderViewData {
+	isOpen?: boolean;
+}
+
+export type IHeaderViewSettings = object;
