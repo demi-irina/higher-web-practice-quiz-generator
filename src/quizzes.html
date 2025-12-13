@@ -6,9 +6,9 @@
 		<title>Ваши квизы</title>
 		<link rel="stylesheet" href="./css/pages/quizzes.css" />
 	</head>
-	<body>
+	<body class="layout">
 		<header class="header">
-			<div class="header__inner layout-container">
+			<div class="header__inner layout__container">
 				<div class="header__brand">
 					<img class="header__logo" src="./assets/logo.svg" alt="Логотип" />
 				</div>
@@ -18,11 +18,11 @@
 			</div>
 		</header>
 
-		<main class="main layout-container layout-grid">
+		<main class="main layout__container layout__grid">
 			<section class="quizzes">
 				<h1 class="quizzes__title">Ваши квизы</h1>
-				<div class="quizzes__grid layout-grid"></div>
-				<div class="quizzes__empty layout-grid" hidden>
+				<div class="quizzes__grid layout__grid"></div>
+				<div class="quizzes__empty layout__grid" hidden>
 					<div class="quizzes__empty-content">
 						<h1 class="quizzes__empty-title">У вас нет сохранённых квизов(</h1>
 						<p class="quizzes__empty-subtitle">Но вы можете добавить!</p>
@@ -37,14 +37,14 @@
 				<h3 class="quiz-card__title"></h3>
 				<p class="quiz-card__description"></p>
 				<div class="quiz-card__footer">
-					<div class="quiz-card__count caption">0 вопросов</div>
+					<div class="quiz-card__count text text--caption">0 вопросов</div>
 					<a class="link quiz-card__action" href="#">Пройти</a>
 				</div>
 			</div>
 		</template>
 
 		<footer class="footer">
-			<div class="footer__inner layout-container">Учебный проект 2025</div>
+			<div class="footer__inner layout__container">Учебный проект 2025</div>
 		</footer>
 
 		<script type="module" src="./ts/pages/quizzes.ts"></script>

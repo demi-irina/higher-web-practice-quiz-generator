@@ -74,6 +74,8 @@
 	--grid-gutter: 24px;
 	--grid-margin: 64px;
 	--grid-max-width: 1140px;
+	--grid-container-width: min(var(--grid-max-width), calc(100vw - 2 * var(--grid-margin)));
+	--grid-container-offset: calc((100vw - var(--grid-container-width)) / 2);
 
 	--header-height: 72px;
 	--footer-height: 88px;

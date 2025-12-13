@@ -41,6 +41,8 @@ export class OptionView extends View<IOptionViewData, IOptionViewSettings> {
 
 	private renderResult(result?: { text: string; isSuccess: boolean }): void {
 		this.label.classList.remove("option__label--success", "option__label--error");
+		this.input.classList.remove("checkbox--success", "checkbox--error", "radio--success", "radio--error");
+
 		if (!result) {
 			this.message.textContent = "";
 			this.message.hidden = true;
@@ -49,6 +51,14 @@ export class OptionView extends View<IOptionViewData, IOptionViewSettings> {
 
 		this.message.hidden = false;
 		this.message.textContent = result.text;
-		this.label.classList.add(result.isSuccess ? "option__label--success" : "option__label--error");
+
+		const modifier = result.isSuccess ? "success" : "error";
+		this.label.classList.add(`option__label--${modifier}`);
+
+		if (this.input.classList.contains("checkbox")) {
+			this.input.classList.add(`checkbox--${modifier}`);
+		} else if (this.input.classList.contains("radio")) {
+			this.input.classList.add(`radio--${modifier}`);
+		}
 	}
 }
