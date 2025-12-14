@@ -28,6 +28,7 @@
 .modal__actions {
 	display: flex;
 	gap: var(--space-8);
+	flex-wrap: wrap;
 }
 
 @media (max-width: 428px) {
