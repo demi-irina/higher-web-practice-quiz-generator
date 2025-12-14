@@ -26,23 +26,25 @@
 			</div>
 		</header>
 
-		<main class="main layout__container layout__grid">
-			<section class="generator">
-				<h1 class="generator__title">Генератор квизов</h1>
-				<p class="generator__hint">Вставьте JSON...</p>
-				<form class="generator__form">
-					<label class="generator__label text text--caption" for="quiz-json-input">Ваш JSON</label>
-					<textarea
-						id="quiz-json-input"
-						name="quiz-json-input"
-						class="generator__textarea text text--mono"
-						placeholder="{&#10;&laquo;title&raquo;: &laquo;Placeholder&raquo;,&#10;&laquo;questions&raquo;: []&#10;}"
-					></textarea>
-					<div class="generator__actions">
-						<button type="submit" class="button button--primary">Сгенерировать</button>
-					</div>
-				</form>
-			</section>
+		<main class="main">
+			<div class="main__inner layout__container layout__grid">
+				<section class="generator">
+					<h1 class="generator__title">Генератор квизов</h1>
+					<p class="generator__hint">Вставьте JSON...</p>
+					<form class="generator__form">
+						<label class="generator__label text text--caption" for="quiz-json-input">Ваш JSON</label>
+						<textarea
+							id="quiz-json-input"
+							name="quiz-json-input"
+							class="generator__textarea text text--mono"
+							placeholder="{&#10;&laquo;title&raquo;: &laquo;Placeholder&raquo;,&#10;&laquo;questions&raquo;: []&#10;}"
+						></textarea>
+						<div class="generator__actions">
+							<button type="submit" class="button button--primary">Сгенерировать</button>
+						</div>
+					</form>
+				</section>
+			</div>
 		</main>
 
 		<div class="toast toast--error" id="error-toast" hidden>

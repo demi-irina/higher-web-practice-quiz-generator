@@ -26,28 +26,30 @@
 			</div>
 		</header>
 
-		<main class="main layout__container layout__grid">
-			<section class="quiz">
-				<div class="quiz__head">
-					<h1 class="quiz__title">Заголовок квиза</h1>
-					<p class="quiz__description">Описание квиза</p>
-				</div>
-				<div class="quiz__progress">
-					<div class="quiz__progress-text">Вопрос 1 из 1</div>
-					<progress class="progress-bar quiz__progress-bar" value="0" max="1"></progress>
-				</div>
-				<div class="quiz__content">
-					<form class="quiz__form">
-						<div class="quiz__question"></div>
-						<div class="quiz__actions">
-							<button type="submit" class="button button--primary quiz__submit">Ответить</button>
-							<button type="button" class="button button--primary quiz__next" hidden>
-								Следующий вопрос
-							</button>
-						</div>
-					</form>
-				</div>
-			</section>
+		<main class="main">
+			<div class="main__inner layout__container layout__grid">
+				<section class="quiz">
+					<div class="quiz__head">
+						<h1 class="quiz__title">Заголовок квиза</h1>
+						<p class="quiz__description">Описание квиза</p>
+					</div>
+					<div class="quiz__progress">
+						<div class="quiz__progress-text">Вопрос 1 из 1</div>
+						<progress class="progress-bar quiz__progress-bar" value="0" max="1"></progress>
+					</div>
+					<div class="quiz__content">
+						<form class="quiz__form">
+							<div class="quiz__question"></div>
+							<div class="quiz__actions">
+								<button type="submit" class="button button--primary quiz__submit">Ответить</button>
+								<button type="button" class="button button--primary quiz__next" hidden>
+									Следующий вопрос
+								</button>
+							</div>
+						</form>
+					</div>
+				</section>
+			</div>
 		</main>
 
 		<template id="single-question-template">

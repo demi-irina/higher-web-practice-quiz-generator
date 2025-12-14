@@ -26,18 +26,20 @@
 			</div>
 		</header>
 
-		<main class="main layout__container layout__grid">
-			<section class="quizzes">
-				<h1 class="quizzes__title">Ваши квизы</h1>
-				<div class="quizzes__grid layout__grid"></div>
-				<div class="quizzes__empty layout__grid" hidden>
-					<div class="quizzes__empty-content">
-						<h1 class="quizzes__empty-title">У вас нет сохранённых квизов(</h1>
-						<p class="quizzes__empty-subtitle">Но вы можете добавить!</p>
-						<a class="button button--primary" href="./index.html">Добавить квиз</a>
+		<main class="main">
+			<div class="main__inner layout__container layout__grid">
+				<section class="quizzes">
+					<h1 class="quizzes__title">Ваши квизы</h1>
+					<div class="quizzes__grid layout__grid"></div>
+					<div class="quizzes__empty layout__grid" hidden>
+						<div class="quizzes__empty-content">
+							<h1 class="quizzes__empty-title">У вас нет сохранённых квизов(</h1>
+							<p class="quizzes__empty-subtitle">Но вы можете добавить!</p>
+							<a class="button button--primary" href="./index.html">Добавить квиз</a>
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 		</main>
 
 		<template id="quiz-card-template">
