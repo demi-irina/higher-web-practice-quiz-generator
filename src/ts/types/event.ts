@@ -49,7 +49,7 @@ export const EVENTS = {
 	QUIZ_SESSION_FINISHED: "quiz.session:finished"
 } as const;
 
-export interface IEventsMap {
+export interface EventsMap {
 	[EVENTS.QUIZ_FORM_SUBMIT]: QuizFormSubmitEvent;
 	[EVENTS.TOAST_ACTION]: undefined;
 	[EVENTS.QUIZ_START]: QuizStartEvent;
@@ -62,4 +62,4 @@ export interface IEventsMap {
 	[EVENTS.QUIZ_SESSION_FINISHED]: QuizSessionFinishedEvent;
 }
 
-export type AppEventName = keyof IEventsMap;
+export type AppEventName = keyof EventsMap;

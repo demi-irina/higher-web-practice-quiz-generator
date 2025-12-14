@@ -1,37 +1,37 @@
 import type { IEvents } from "./base";
-import type { IEventsMap } from "./event";
+import type { EventsMap } from "./event";
 import type { QuizOption, QuizQuestion, QuizRecord } from "./quiz";
 
-export interface IBaseViewSettings {
-	events: IEvents<IEventsMap>;
+export interface BaseViewSettings {
+	events: IEvents<EventsMap>;
 }
 
-export interface IQuizGeneratorViewData {
+export interface QuizGeneratorViewData {
 	value?: string;
 	isValid?: boolean;
 }
 
-export type IQuizGeneratorViewSettings = IBaseViewSettings;
+export type QuizGeneratorViewSettings = BaseViewSettings;
 
-export interface IToastViewData {
+export interface ToastViewData {
 	title?: string;
 	message?: string;
 	isVisible: boolean;
 }
 
-export type IToastViewSettings = IBaseViewSettings;
+export type ToastViewSettings = BaseViewSettings;
 
-export type IQuizCardViewData = QuizRecord;
+export type QuizCardViewData = QuizRecord;
 
-export type IQuizCardViewSettings = IBaseViewSettings;
+export type QuizCardViewSettings = BaseViewSettings;
 
-export interface IQuizzesViewData {
+export interface QuizzesViewData {
 	cards: HTMLElement[];
 }
 
-export type IQuizzesViewSettings = IBaseViewSettings;
+export type QuizzesViewSettings = BaseViewSettings;
 
-export interface IOptionViewData {
+export interface OptionViewData {
 	option: QuizOption;
 	disabled: boolean;
 	checked: boolean;
@@ -41,16 +41,16 @@ export interface IOptionViewData {
 	};
 }
 
-export type IOptionViewSettings = IBaseViewSettings;
+export type OptionViewSettings = BaseViewSettings;
 
-export interface IQuestionViewData {
+export interface QuestionViewData {
 	text: string;
 	optionElements: HTMLElement[];
 }
 
-export type IQuestionViewSettings = IBaseViewSettings;
+export type QuestionViewSettings = BaseViewSettings;
 
-export interface IQuizContentViewData {
+export interface QuizContentViewData {
 	questionElement: HTMLElement;
 	questionType: QuizQuestion["type"];
 	showSubmit: boolean;
@@ -58,29 +58,29 @@ export interface IQuizContentViewData {
 	nextLabel?: string;
 }
 
-export type IQuizContentViewSettings = IBaseViewSettings;
+export type QuizContentViewSettings = BaseViewSettings;
 
-export interface IQuizHeadViewData {
+export interface QuizHeadViewData {
 	title: string;
 	description: string;
 }
 
-export type IQuizHeadViewSettings = IBaseViewSettings;
+export type QuizHeadViewSettings = BaseViewSettings;
 
-export interface IQuizProgressViewData {
+export interface QuizProgressViewData {
 	currentIndex: number;
 	total: number;
 }
 
-export type IQuizProgressViewSettings = IBaseViewSettings;
+export type QuizProgressViewSettings = BaseViewSettings;
 
-export interface IQuizSectionViewData {
+export interface QuizSectionViewData {
 	isVisible: boolean;
 }
 
-export type IQuizSectionViewSettings = IBaseViewSettings;
+export type QuizSectionViewSettings = BaseViewSettings;
 
-export interface IModalViewData {
+export interface ModalViewData {
 	data?: {
 		title: string;
 		subtitle: string;
@@ -89,10 +89,10 @@ export interface IModalViewData {
 	isOpen: boolean;
 }
 
-export type IModalViewSettings = IBaseViewSettings;
+export type ModalViewSettings = BaseViewSettings;
 
-export interface IHeaderViewData {
+export interface HeaderViewData {
 	isOpen?: boolean;
 }
 
-export type IHeaderViewSettings = object;
+export type HeaderViewSettings = object;

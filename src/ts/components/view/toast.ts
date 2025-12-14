@@ -1,14 +1,14 @@
 import { View } from "../base";
-import type { IEvents, IEventsMap, IToastViewData, IToastViewSettings } from "../../types";
+import type { IEvents, EventsMap, ToastViewData, ToastViewSettings } from "../../types";
 import { EVENTS } from "../../types";
 
-export class ToastView extends View<IToastViewData, IToastViewSettings> {
-	private events: IEvents<IEventsMap>;
+export class ToastView extends View<ToastViewData, ToastViewSettings> {
+	private events: IEvents<EventsMap>;
 	private title: HTMLElement;
 	private message: HTMLElement;
 	private actionButton: HTMLButtonElement;
 
-	constructor(element: HTMLElement, settings: IToastViewSettings) {
+	constructor(element: HTMLElement, settings: ToastViewSettings) {
 		super(element, settings);
 
 		this.events = settings.events;
@@ -30,7 +30,7 @@ export class ToastView extends View<IToastViewData, IToastViewSettings> {
 		});
 	}
 
-	render(data: IToastViewData): HTMLElement {
+	render(data: ToastViewData): HTMLElement {
 		if (data.title != null) {
 			this.title.textContent = data.title;
 		}

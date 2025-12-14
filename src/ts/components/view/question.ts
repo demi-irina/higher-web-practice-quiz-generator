@@ -1,11 +1,11 @@
 import { View } from "../base";
-import type { IQuestionViewData, IQuestionViewSettings } from "../../types";
+import type { QuestionViewData, QuestionViewSettings } from "../../types";
 
-export class QuestionView extends View<IQuestionViewData, IQuestionViewSettings> {
+export class QuestionView extends View<QuestionViewData, QuestionViewSettings> {
 	private readonly questionText: HTMLElement;
 	private readonly optionsContainer: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IQuestionViewSettings) {
+	constructor(element: HTMLElement, settings: QuestionViewSettings) {
 		super(element, settings);
 
 		const questionText = element.querySelector<HTMLElement>(".question__text");
@@ -19,7 +19,7 @@ export class QuestionView extends View<IQuestionViewData, IQuestionViewSettings>
 		this.optionsContainer = optionsContainer;
 	}
 
-	render(data: IQuestionViewData): HTMLElement {
+	render(data: QuestionViewData): HTMLElement {
 		this.questionText.textContent = data.text;
 		this.optionsContainer.replaceChildren(...data.optionElements);
 		return this.element;

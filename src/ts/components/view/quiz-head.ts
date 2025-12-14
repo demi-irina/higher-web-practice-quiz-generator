@@ -1,11 +1,11 @@
 import { View } from "../base";
-import type { IQuizHeadViewData, IQuizHeadViewSettings } from "../../types";
+import type { QuizHeadViewData, QuizHeadViewSettings } from "../../types";
 
-export class QuizHeadView extends View<IQuizHeadViewData, IQuizHeadViewSettings> {
+export class QuizHeadView extends View<QuizHeadViewData, QuizHeadViewSettings> {
 	private title: HTMLElement;
 	private description: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IQuizHeadViewSettings) {
+	constructor(element: HTMLElement, settings: QuizHeadViewSettings) {
 		super(element, settings);
 
 		const title = element.querySelector<HTMLElement>(".quiz__title");
@@ -19,7 +19,7 @@ export class QuizHeadView extends View<IQuizHeadViewData, IQuizHeadViewSettings>
 		this.description = description;
 	}
 
-	render(data: IQuizHeadViewData): HTMLElement {
+	render(data: QuizHeadViewData): HTMLElement {
 		this.title.textContent = data.title;
 		this.description.textContent = data.description;
 

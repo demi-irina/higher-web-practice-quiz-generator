@@ -1,11 +1,9 @@
-import type { EventName, IEvents, IEventsMap, Subscriber } from "../types";
-
-type EventsMap<T extends object> = {
-	[K in EventName<T>]?: Set<Subscriber<T, K>>;
-};
+import type { EventName, EventsMap, IEvents, Subscriber } from "../types";
 
 class EventEmitter<T extends object> implements IEvents<T> {
-	private _events: EventsMap<T>;
+	private _events: {
+		[K in EventName<T>]?: Set<Subscriber<T, K>>;
+	};
 
 	constructor() {
 		this._events = {};
@@ -40,4 +38,4 @@ class EventEmitter<T extends object> implements IEvents<T> {
 	}
 }
 
-export const events = new EventEmitter<IEventsMap>();
+export const events = new EventEmitter<EventsMap>();

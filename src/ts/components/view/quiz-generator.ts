@@ -1,13 +1,13 @@
 import { View } from "../base";
-import type { IEvents, IEventsMap, IQuizGeneratorViewData, IQuizGeneratorViewSettings } from "../../types";
+import type { IEvents, EventsMap, QuizGeneratorViewData, QuizGeneratorViewSettings } from "../../types";
 import { EVENTS } from "../../types";
 
-export class QuizGeneratorView extends View<IQuizGeneratorViewData, IQuizGeneratorViewSettings> {
-	private events: IEvents<IEventsMap>;
+export class QuizGeneratorView extends View<QuizGeneratorViewData, QuizGeneratorViewSettings> {
+	private events: IEvents<EventsMap>;
 	private form: HTMLFormElement;
 	private textarea: HTMLTextAreaElement;
 
-	constructor(element: HTMLElement, settings: IQuizGeneratorViewSettings) {
+	constructor(element: HTMLElement, settings: QuizGeneratorViewSettings) {
 		super(element, settings);
 
 		this.events = settings.events;
@@ -32,7 +32,7 @@ export class QuizGeneratorView extends View<IQuizGeneratorViewData, IQuizGenerat
 		});
 	}
 
-	render(data: IQuizGeneratorViewData): HTMLElement {
+	render(data: QuizGeneratorViewData): HTMLElement {
 		if (data.value != null) {
 			this.textarea.value = data.value;
 		}

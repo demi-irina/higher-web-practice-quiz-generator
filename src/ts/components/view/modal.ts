@@ -1,15 +1,15 @@
 import { View } from "../base";
-import type { IEvents, IEventsMap, IModalViewData, IModalViewSettings } from "../../types";
+import type { IEvents, EventsMap, ModalViewData, ModalViewSettings } from "../../types";
 import { EVENTS } from "../../types";
 
-export class ModalView extends View<IModalViewData, IModalViewSettings> {
-	private events: IEvents<IEventsMap>;
+export class ModalView extends View<ModalViewData, ModalViewSettings> {
+	private events: IEvents<EventsMap>;
 	private title: HTMLElement;
 	private subtitle: HTMLElement;
 	private message: HTMLElement;
 	private restartButton: HTMLButtonElement;
 
-	constructor(element: HTMLElement, settings: IModalViewSettings) {
+	constructor(element: HTMLElement, settings: ModalViewSettings) {
 		super(element, settings);
 
 		this.events = settings.events;
@@ -33,7 +33,7 @@ export class ModalView extends View<IModalViewData, IModalViewSettings> {
 		});
 	}
 
-	render(data: IModalViewData): HTMLElement {
+	render(data: ModalViewData): HTMLElement {
 		if (data.data) {
 			this.title.textContent = data.data.title;
 			this.subtitle.textContent = data.data.subtitle;

@@ -1,4 +1,4 @@
-import type { AppEventName, IEventsMap } from "./event";
+import type { AppEventName, EventsMap } from "./event";
 
 export type EventName<T extends object> = keyof T;
 export type Subscriber<T extends object, K extends EventName<T>> = (event: T[K]) => void;
@@ -22,5 +22,5 @@ export interface IView<T, S extends object> {
 }
 
 export interface IModel {
-	emitChanges<K extends AppEventName>(event: K, payload?: IEventsMap[K]): void;
+	emitChanges<K extends AppEventName>(event: K, payload?: EventsMap[K]): void;
 }

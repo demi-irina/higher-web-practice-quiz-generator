@@ -1,16 +1,16 @@
 import { View } from "../base";
-import type { IEvents, IEventsMap, IQuizCardViewData, IQuizCardViewSettings, QuizRecord } from "../../types";
+import type { IEvents, EventsMap, QuizCardViewData, QuizCardViewSettings, QuizRecord } from "../../types";
 import { EVENTS } from "../../types";
 
-export class QuizCardView extends View<IQuizCardViewData, IQuizCardViewSettings> {
+export class QuizCardView extends View<QuizCardViewData, QuizCardViewSettings> {
 	private id: string | null = null;
-	private events: IEvents<IEventsMap>;
+	private events: IEvents<EventsMap>;
 	private title: HTMLElement;
 	private description: HTMLElement;
 	private count: HTMLElement;
 	private action: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IQuizCardViewSettings) {
+	constructor(element: HTMLElement, settings: QuizCardViewSettings) {
 		super(element, settings);
 
 		this.events = settings.events;

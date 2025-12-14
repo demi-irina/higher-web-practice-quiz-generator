@@ -1,12 +1,12 @@
 import { View } from "../base";
-import type { IHeaderViewData, IHeaderViewSettings } from "../../types";
+import type { HeaderViewData, HeaderViewSettings } from "../../types";
 
-export class HeaderView extends View<IHeaderViewData, IHeaderViewSettings> {
+export class HeaderView extends View<HeaderViewData, HeaderViewSettings> {
 	private menuButton: HTMLElement;
 	private menuIcon: HTMLImageElement;
 	private menuContainer: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IHeaderViewSettings = {}) {
+	constructor(element: HTMLElement, settings: HeaderViewSettings = {}) {
 		super(element, settings);
 
 		const menuButton = element.querySelector<HTMLElement>(".header__menu-button");
@@ -33,7 +33,7 @@ export class HeaderView extends View<IHeaderViewData, IHeaderViewSettings> {
 		return this.menuContainer.classList.contains("header__menu-container--open");
 	}
 
-	render(data: IHeaderViewData): HTMLElement {
+	render(data: HeaderViewData): HTMLElement {
 		if (data.isOpen != null) {
 			if (data.isOpen) {
 				this.open();

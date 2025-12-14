@@ -1,12 +1,12 @@
 import { View } from "../base";
-import type { IQuizzesViewData, IQuizzesViewSettings } from "../../types";
+import type { QuizzesViewData, QuizzesViewSettings } from "../../types";
 
-export class QuizzesView extends View<IQuizzesViewData, IQuizzesViewSettings> {
+export class QuizzesView extends View<QuizzesViewData, QuizzesViewSettings> {
 	private title: HTMLElement;
 	private grid: HTMLElement;
 	private empty: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IQuizzesViewSettings) {
+	constructor(element: HTMLElement, settings: QuizzesViewSettings) {
 		super(element, settings);
 		const title = element.querySelector<HTMLElement>(".quizzes__title");
 		const grid = element.querySelector<HTMLElement>(".quizzes__grid");
@@ -21,7 +21,7 @@ export class QuizzesView extends View<IQuizzesViewData, IQuizzesViewSettings> {
 		this.empty = empty;
 	}
 
-	render(data: IQuizzesViewData): HTMLElement {
+	render(data: QuizzesViewData): HTMLElement {
 		const hasItems = data.cards.length > 0;
 
 		this.title.hidden = !hasItems;

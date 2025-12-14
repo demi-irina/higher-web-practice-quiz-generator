@@ -1,5 +1,5 @@
 import { Model } from "../base";
-import type { IEvents, IEventsMap, QuizAnswerResult, QuizRecord } from "../../types";
+import type { IEvents, EventsMap, QuizAnswerResult, QuizRecord } from "../../types";
 import { EVENTS, type QuizQuestion } from "../../types";
 
 export class QuizSessionModel extends Model {
@@ -8,7 +8,7 @@ export class QuizSessionModel extends Model {
 	private correctCount: number;
 	private completed: boolean;
 
-	constructor(quiz: QuizRecord, events: IEvents<IEventsMap>) {
+	constructor(quiz: QuizRecord, events: IEvents<EventsMap>) {
 		super(events);
 
 		this.quiz = quiz;

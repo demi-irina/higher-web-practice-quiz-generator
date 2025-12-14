@@ -1,13 +1,13 @@
 import { View } from "../base";
-import type { IOptionViewData, IOptionViewSettings } from "../../types";
+import type { OptionViewData, OptionViewSettings } from "../../types";
 
-export class OptionView extends View<IOptionViewData, IOptionViewSettings> {
+export class OptionView extends View<OptionViewData, OptionViewSettings> {
 	private input: HTMLInputElement;
 	private label: HTMLLabelElement;
 	private text: HTMLElement;
 	private message: HTMLElement;
 
-	constructor(element: HTMLElement, settings: IOptionViewSettings) {
+	constructor(element: HTMLElement, settings: OptionViewSettings) {
 		super(element, settings);
 
 		const input = element.querySelector<HTMLInputElement>(".option__input");
@@ -25,7 +25,7 @@ export class OptionView extends View<IOptionViewData, IOptionViewSettings> {
 		this.message = message;
 	}
 
-	render(data: IOptionViewData): HTMLElement {
+	render(data: OptionViewData): HTMLElement {
 		const { option, disabled, checked, result } = data;
 
 		this.input.value = String(option.id);

@@ -1,12 +1,12 @@
 import { View } from "../base";
-import type { IQuizSectionViewData, IQuizSectionViewSettings } from "../../types";
+import type { QuizSectionViewData, QuizSectionViewSettings } from "../../types";
 
-export class QuizSectionView extends View<IQuizSectionViewData, IQuizSectionViewSettings> {
-	constructor(element: HTMLElement, settings: IQuizSectionViewSettings) {
+export class QuizSectionView extends View<QuizSectionViewData, QuizSectionViewSettings> {
+	constructor(element: HTMLElement, settings: QuizSectionViewSettings) {
 		super(element, settings);
 	}
 
-	render(data: IQuizSectionViewData): HTMLElement {
+	render(data: QuizSectionViewData): HTMLElement {
 		this.element.hidden = !data.isVisible;
 		return this.element;
 	}

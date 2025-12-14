@@ -1,11 +1,11 @@
 import { View } from "../base";
-import type { IQuizProgressViewData, IQuizProgressViewSettings } from "../../types";
+import type { QuizProgressViewData, QuizProgressViewSettings } from "../../types";
 
-export class QuizProgressView extends View<IQuizProgressViewData, IQuizProgressViewSettings> {
+export class QuizProgressView extends View<QuizProgressViewData, QuizProgressViewSettings> {
 	private progressText: HTMLElement;
 	private progressBar: HTMLProgressElement;
 
-	constructor(element: HTMLElement, settings: IQuizProgressViewSettings) {
+	constructor(element: HTMLElement, settings: QuizProgressViewSettings) {
 		super(element, settings);
 
 		const progressText = element.querySelector<HTMLElement>(".quiz__progress-text");
@@ -19,7 +19,7 @@ export class QuizProgressView extends View<IQuizProgressViewData, IQuizProgressV
 		this.progressBar = progressBar;
 	}
 
-	render(data: IQuizProgressViewData): HTMLElement {
+	render(data: QuizProgressViewData): HTMLElement {
 		this.progressBar.max = data.total;
 		this.progressBar.value = data.currentIndex + 1;
 		this.progressText.textContent = `Вопрос ${data.currentIndex + 1} из ${data.total}`;

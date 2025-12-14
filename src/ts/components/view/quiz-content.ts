@@ -1,20 +1,15 @@
 import { View } from "../base";
-import type {
-	IEvents,
-	IEventsMap,
-	IQuizContentViewData,
-	IQuizContentViewSettings
-} from "../../types";
+import type { EventsMap, IEvents, QuizContentViewData, QuizContentViewSettings } from "../../types";
 import { EVENTS } from "../../types";
 
-export class QuizContentView extends View<IQuizContentViewData, IQuizContentViewSettings> {
-	private events: IEvents<IEventsMap>;
+export class QuizContentView extends View<QuizContentViewData, QuizContentViewSettings> {
+	private events: IEvents<EventsMap>;
 	private questionContainer: HTMLElement;
 	private form: HTMLFormElement;
 	private submitButton: HTMLButtonElement;
 	private nextButton: HTMLButtonElement;
 
-	constructor(element: HTMLElement, settings: IQuizContentViewSettings) {
+	constructor(element: HTMLElement, settings: QuizContentViewSettings) {
 		super(element, settings);
 
 		this.events = settings.events;
@@ -44,7 +39,7 @@ export class QuizContentView extends View<IQuizContentViewData, IQuizContentView
 		});
 	}
 
-	render(data: IQuizContentViewData): HTMLElement {
+	render(data: QuizContentViewData): HTMLElement {
 		this.questionContainer.replaceChildren(data.questionElement);
 
 		this.submitButton.hidden = !data.showSubmit;
