@@ -38,6 +38,9 @@ export interface QuizSessionFinishedEvent {
 
 export const EVENTS = {
 	QUIZ_FORM_SUBMIT: "quiz.form:submit",
+	QUIZ_VALIDATION_FAILED: "quiz.validation:failed",
+	QUIZ_SAVE_SUCCESS: "quiz.save:success",
+	QUIZ_SAVE_FAILED: "quiz.save:failed",
 	QUIZ_LOAD_FAILED: "quiz.load:failed",
 	TOAST_ACTION: "toast:action",
 	QUIZ_START: "quiz:start",
@@ -52,6 +55,9 @@ export const EVENTS = {
 
 export interface EventsMap {
 	[EVENTS.QUIZ_FORM_SUBMIT]: QuizFormSubmitEvent;
+	[EVENTS.QUIZ_VALIDATION_FAILED]: undefined;
+	[EVENTS.QUIZ_SAVE_SUCCESS]: undefined;
+	[EVENTS.QUIZ_SAVE_FAILED]: undefined;
 	[EVENTS.QUIZ_LOAD_FAILED]: undefined;
 	[EVENTS.TOAST_ACTION]: undefined;
 	[EVENTS.QUIZ_START]: QuizStartEvent;

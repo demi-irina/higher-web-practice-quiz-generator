@@ -1,6 +1,6 @@
 import { HeaderView, QuizGeneratorView, ToastView } from "../components/view";
+import { QuizGeneratorModel } from "../components/model";
 import { quizDatabase } from "../utils/storage";
-import { validateQuizJson } from "../utils/validation";
 import { EVENTS } from "../types";
 import { events } from "../utils/events";
 
@@ -15,22 +15,32 @@ if (!header || !generator || !toastContainer) {
 new HeaderView(header);
 const generatorView = new QuizGeneratorView(generator, { events });
 const toastView = new ToastView(toastContainer, { events });
+const generatorModel = new QuizGeneratorModel(quizDatabase, events);
 
 events.on(EVENTS.QUIZ_FORM_SUBMIT, async ({ value }) => {
-	const result = validateQuizJson(value);
+	await generatorModel.submitQuiz(value);
+});
 
-	if (!result.isValid) {
-		toastView.render({
-			title: "Ошибка: не удалось обработать JSON.",
-			message: "Проверьте формат данных и попробуйте снова.",
-			isVisible: true
-		});
-		generatorView.render({ isValid: false });
-		return;
-	}
-
-	await quizDatabase.saveQuiz(result.data);
+events.on(EVENTS.QUIZ_SAVE_SUCCESS, async () => {
 	window.location.href = "./quizzes.html";
+});
+
+events.on(EVENTS.QUIZ_SAVE_FAILED, () => {
+	toastView.render({
+		title: "Ошибка: не удалось сохранить квиз.",
+		message: "Произошла ошибка при сохранении в базу данных.",
+		isVisible: true
+	});
+	generatorView.render({ isValid: false });
+});
+
+events.on(EVENTS.QUIZ_VALIDATION_FAILED, () => {
+	toastView.render({
+		title: "Ошибка: не удалось обработать JSON.",
+		message: "Проверьте формат данных и попробуйте снова.",
+		isVisible: true
+	});
+	generatorView.render({ isValid: false });
 });
 
 events.on(EVENTS.TOAST_ACTION, () => {
