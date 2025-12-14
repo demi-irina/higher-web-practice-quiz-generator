@@ -1,7 +1,11 @@
-import type { QuizAnswerResult, QuizQuestion } from "./quiz";
+import type { QuizAnswerResult, QuizQuestion, QuizRecord } from "./quiz";
 
 export interface QuizFormSubmitEvent {
 	value: string;
+}
+
+export interface QuizzesLoadSuccessEvent {
+	quizzes: QuizRecord[];
 }
 
 export interface QuizStartEvent {
@@ -42,6 +46,8 @@ export const EVENTS = {
 	QUIZ_SAVE_SUCCESS: "quiz.save:success",
 	QUIZ_SAVE_FAILED: "quiz.save:failed",
 	QUIZ_LOAD_FAILED: "quiz.load:failed",
+	QUIZZES_LOAD_SUCCESS: "quizzes.load:success",
+	QUIZZES_LOAD_FAILED: "quizzes.load:failed",
 	TOAST_ACTION: "toast:action",
 	QUIZ_START: "quiz:start",
 	QUIZ_ANSWER_SUBMIT: "quiz.answer:submit",
@@ -59,6 +65,8 @@ export interface EventsMap {
 	[EVENTS.QUIZ_SAVE_SUCCESS]: undefined;
 	[EVENTS.QUIZ_SAVE_FAILED]: undefined;
 	[EVENTS.QUIZ_LOAD_FAILED]: undefined;
+	[EVENTS.QUIZZES_LOAD_SUCCESS]: QuizzesLoadSuccessEvent;
+	[EVENTS.QUIZZES_LOAD_FAILED]: undefined;
 	[EVENTS.TOAST_ACTION]: undefined;
 	[EVENTS.QUIZ_START]: QuizStartEvent;
 	[EVENTS.QUIZ_ANSWER_SUBMIT]: QuizAnswerSubmitEvent;
