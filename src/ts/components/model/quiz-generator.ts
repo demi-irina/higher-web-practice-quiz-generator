@@ -16,7 +16,7 @@ export class QuizGeneratorModel extends Model {
 		const result = validateJson(jsonString, QuizSchema);
 
 		if (!result.isValid) {
-			this.emitChanges(EVENTS.QUIZ_VALIDATION_FAILED);
+			this.emitChanges(EVENTS.QUIZ_VALIDATION_FAILED, { error: result.error });
 			return false;
 		}
 
@@ -25,7 +25,8 @@ export class QuizGeneratorModel extends Model {
 			this.emitChanges(EVENTS.QUIZ_SAVE_SUCCESS);
 			return true;
 		} catch (error) {
-			this.emitChanges(EVENTS.QUIZ_SAVE_FAILED);
+			const message = error instanceof Error ? error.message : String(error);
+			this.emitChanges(EVENTS.QUIZ_SAVE_FAILED, { error: message });
 			return false;
 		}
 	}

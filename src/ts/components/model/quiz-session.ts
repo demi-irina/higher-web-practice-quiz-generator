@@ -25,12 +25,13 @@ export class QuizSessionModel extends Model {
 		try {
 			const quiz = await this.db.getQuiz(quizId);
 			if (!quiz) {
-				this.emitChanges(EVENTS.QUIZ_LOAD_FAILED);
+				this.emitChanges(EVENTS.QUIZ_LOAD_FAILED, { error: "Quiz not found" });
 				return;
 			}
 			this.quiz = quiz;
 		} catch (error) {
-			this.emitChanges(EVENTS.QUIZ_LOAD_FAILED);
+			const message = error instanceof Error ? error.message : String(error);
+			this.emitChanges(EVENTS.QUIZ_LOAD_FAILED, { error: message });
 			return;
 		}
 

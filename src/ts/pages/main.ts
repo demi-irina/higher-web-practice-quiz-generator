@@ -25,7 +25,8 @@ events.on(EVENTS.QUIZ_SAVE_SUCCESS, async () => {
 	window.location.href = "./quizzes.html";
 });
 
-events.on(EVENTS.QUIZ_SAVE_FAILED, () => {
+events.on(EVENTS.QUIZ_SAVE_FAILED, ({ error }) => {
+	console.error("Quiz save failed", error);
 	toastView.render({
 		title: "Ошибка: не удалось сохранить квиз.",
 		message: "Произошла ошибка при сохранении в базу данных.",
@@ -34,7 +35,8 @@ events.on(EVENTS.QUIZ_SAVE_FAILED, () => {
 	generatorView.render({ isValid: false });
 });
 
-events.on(EVENTS.QUIZ_VALIDATION_FAILED, () => {
+events.on(EVENTS.QUIZ_VALIDATION_FAILED, ({ error }) => {
+	console.error("Quiz validation failed", error);
 	toastView.render({
 		title: "Ошибка: не удалось обработать JSON.",
 		message: "Проверьте формат данных и попробуйте снова.",

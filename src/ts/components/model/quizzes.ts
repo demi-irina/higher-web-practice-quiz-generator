@@ -16,7 +16,8 @@ export class QuizzesModel extends Model {
 			this.emitChanges(EVENTS.QUIZZES_LOAD_SUCCESS, { quizzes });
 			return quizzes;
 		} catch (error) {
-			this.emitChanges(EVENTS.QUIZZES_LOAD_FAILED);
+			const message = error instanceof Error ? error.message : String(error);
+			this.emitChanges(EVENTS.QUIZZES_LOAD_FAILED, { error: message });
 			return [];
 		}
 	}

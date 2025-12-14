@@ -4,6 +4,10 @@ export interface QuizFormSubmitEvent {
 	value: string;
 }
 
+export interface ErrorEvent {
+	error: string;
+}
+
 export interface QuizzesLoadSuccessEvent {
 	quizzes: QuizRecord[];
 }
@@ -61,12 +65,12 @@ export const EVENTS = {
 
 export interface EventsMap {
 	[EVENTS.QUIZ_FORM_SUBMIT]: QuizFormSubmitEvent;
-	[EVENTS.QUIZ_VALIDATION_FAILED]: undefined;
+	[EVENTS.QUIZ_VALIDATION_FAILED]: ErrorEvent;
 	[EVENTS.QUIZ_SAVE_SUCCESS]: undefined;
-	[EVENTS.QUIZ_SAVE_FAILED]: undefined;
-	[EVENTS.QUIZ_LOAD_FAILED]: undefined;
+	[EVENTS.QUIZ_SAVE_FAILED]: ErrorEvent;
+	[EVENTS.QUIZ_LOAD_FAILED]: ErrorEvent;
 	[EVENTS.QUIZZES_LOAD_SUCCESS]: QuizzesLoadSuccessEvent;
-	[EVENTS.QUIZZES_LOAD_FAILED]: undefined;
+	[EVENTS.QUIZZES_LOAD_FAILED]: ErrorEvent;
 	[EVENTS.TOAST_ACTION]: undefined;
 	[EVENTS.QUIZ_START]: QuizStartEvent;
 	[EVENTS.QUIZ_ANSWER_SUBMIT]: QuizAnswerSubmitEvent;

@@ -139,7 +139,8 @@ const quizContentView = new QuizContentView(quizContent, { events });
 const modalView = new ModalView(resultModal, { events });
 const quizSessionModel = new QuizSessionModel(quizDatabase, events);
 
-events.on(EVENTS.QUIZ_LOAD_FAILED, () => {
+events.on(EVENTS.QUIZ_LOAD_FAILED, ({ error }) => {
+	console.error("Quiz load failed", error);
 	window.location.href = "./quizzes.html";
 });
 

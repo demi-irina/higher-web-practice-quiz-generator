@@ -26,7 +26,8 @@ events.on(EVENTS.QUIZZES_LOAD_SUCCESS, ({ quizzes }) => {
 	quizzesView.render({ cards });
 });
 
-events.on(EVENTS.QUIZZES_LOAD_FAILED, () => {
+events.on(EVENTS.QUIZZES_LOAD_FAILED, ({ error }) => {
+	console.error("Quizzes load failed", error);
 	quizzesView.render({ cards: [] });
 });
 
