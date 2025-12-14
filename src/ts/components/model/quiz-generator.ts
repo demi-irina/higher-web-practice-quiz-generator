@@ -1,7 +1,8 @@
 import { Model } from "../base";
 import type { EventsMap, IEvents, IQuizDatabase } from "../../types";
 import { EVENTS } from "../../types";
-import { validateQuizJson } from "../../utils/validation";
+import { validateJson } from "../../utils/validation";
+import { QuizSchema } from "../../schema";
 
 export class QuizGeneratorModel extends Model {
 	private db: IQuizDatabase;
@@ -12,7 +13,7 @@ export class QuizGeneratorModel extends Model {
 	}
 
 	async submitQuiz(jsonString: string): Promise<boolean> {
-		const result = validateQuizJson(jsonString);
+		const result = validateJson(jsonString, QuizSchema);
 
 		if (!result.isValid) {
 			this.emitChanges(EVENTS.QUIZ_VALIDATION_FAILED);

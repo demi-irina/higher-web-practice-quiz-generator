@@ -1,20 +1,21 @@
-import { QuizSchema } from "../schema";
-import type { QuizData } from "../types";
+import { z } from "zod";
 
-type ValidationResult = { isValid: false } | { isValid: true; data: QuizData };
+type ValidationResult<T> = { isValid: false; error: string } | { isValid: true; data: T };
 
-export function validateQuizJson(jsonString: string): ValidationResult {
+export function validateJson<S extends z.ZodType>(jsonString: string, schema: S): ValidationResult<z.infer<S>> {
 	let parsed: unknown;
+
 	try {
 		parsed = JSON.parse(jsonString);
 	} catch (error) {
-		return { isValid: false };
+		const message = error instanceof Error ? error.message : String(error);
+		return { isValid: false, error: message };
 	}
 
-	const result = QuizSchema.safeParse(parsed);
+	const result = schema.safeParse(parsed);
 
 	if (!result.success) {
-		return { isValid: false };
+		return { isValid: false, error: result.error.message };
 	}
 
 	return { isValid: true, data: result.data };
