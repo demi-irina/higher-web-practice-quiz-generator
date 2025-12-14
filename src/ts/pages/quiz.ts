@@ -74,7 +74,7 @@ function renderQuestion(question: QuizQuestion, answer?: string[], result?: Quiz
 }
 
 function getResultModalData(correctCount: number, total: number) {
-	const ratio = correctCount / total;
+	const ratio = total > 0 ? correctCount / total : 0;
 
 	if (ratio === 1) {
 		return {
@@ -131,18 +131,17 @@ if (!quizId) {
 	throw new Error("Quiz ID not found");
 }
 
-const quiz = await quizDatabase.getQuiz(quizId);
-if (!quiz) {
-	throw new Error("Quiz not found");
-}
-
 new HeaderView(header);
 const quizSectionView = new QuizSectionView(quizSection, { events });
 const quizHeadView = new QuizHeadView(quizHead, { events });
 const quizProgressView = new QuizProgressView(quizProgress, { events });
 const quizContentView = new QuizContentView(quizContent, { events });
 const modalView = new ModalView(resultModal, { events });
-const session = new QuizSessionModel(quiz, events);
+const quizSessionModel = new QuizSessionModel(quizDatabase, events);
+
+events.on(EVENTS.QUIZ_LOAD_FAILED, () => {
+	window.location.href = "./quizzes.html";
+});
 
 events.on(EVENTS.QUIZ_SESSION_STARTED, ({ title, description, total }) => {
 	quizHeadView.render({ title, description });
@@ -167,17 +166,17 @@ events.on(EVENTS.QUIZ_SESSION_FINISHED, ({ correctCount, total }) => {
 });
 
 events.on(EVENTS.QUIZ_ANSWER_SUBMIT, ({ answer }) => {
-	session.submitAnswer(answer);
+	quizSessionModel.submitAnswer(answer);
 });
 
 events.on(EVENTS.QUIZ_NEXT, () => {
-	session.goNext();
+	quizSessionModel.goNext();
 });
 
 events.on(EVENTS.QUIZ_RESTART, () => {
 	quizSectionView.render({ isVisible: true });
 	modalView.render({ isOpen: false });
-	session.restart();
+	quizSessionModel.restart();
 });
 
-session.start();
+void quizSessionModel.start(quizId);

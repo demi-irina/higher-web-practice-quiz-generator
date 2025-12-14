@@ -38,6 +38,7 @@ export interface QuizSessionFinishedEvent {
 
 export const EVENTS = {
 	QUIZ_FORM_SUBMIT: "quiz.form:submit",
+	QUIZ_LOAD_FAILED: "quiz.load:failed",
 	TOAST_ACTION: "toast:action",
 	QUIZ_START: "quiz:start",
 	QUIZ_ANSWER_SUBMIT: "quiz.answer:submit",
@@ -51,6 +52,7 @@ export const EVENTS = {
 
 export interface EventsMap {
 	[EVENTS.QUIZ_FORM_SUBMIT]: QuizFormSubmitEvent;
+	[EVENTS.QUIZ_LOAD_FAILED]: undefined;
 	[EVENTS.TOAST_ACTION]: undefined;
 	[EVENTS.QUIZ_START]: QuizStartEvent;
 	[EVENTS.QUIZ_ANSWER_SUBMIT]: QuizAnswerSubmitEvent;

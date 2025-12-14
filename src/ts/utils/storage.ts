@@ -1,8 +1,8 @@
 import { type IDBPDatabase, openDB, type StoreNames } from "idb";
 import { nanoid } from "nanoid";
-import type { QuizData, QuizDB } from "../types";
+import type { QuizData, QuizDB, IQuizDatabase } from "../types";
 
-class QuizDatabase {
+class QuizDatabase implements IQuizDatabase {
 	private readonly storeName: StoreNames<QuizDB>;
 	private readonly dbPromise: Promise<IDBPDatabase<QuizDB>>;
 

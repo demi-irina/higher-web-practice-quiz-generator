@@ -1,33 +1,44 @@
 import { Model } from "../base";
-import type { IEvents, EventsMap, QuizAnswerResult, QuizRecord } from "../../types";
+import type { EventsMap, IEvents, IQuizDatabase, QuizAnswerResult, QuizRecord } from "../../types";
 import { EVENTS, type QuizQuestion } from "../../types";
 
 export class QuizSessionModel extends Model {
-	private quiz: QuizRecord;
+	private db: IQuizDatabase;
+	private quiz: QuizRecord | null;
 	private currentIndex: number;
 	private correctCount: number;
 	private completed: boolean;
 
-	constructor(quiz: QuizRecord, events: IEvents<EventsMap>) {
+	constructor(db: IQuizDatabase, events: IEvents<EventsMap>) {
 		super(events);
-
-		this.quiz = quiz;
+		this.db = db;
+		this.quiz = null;
 		this.currentIndex = 0;
 		this.correctCount = 0;
 		this.completed = false;
 	}
 
-	start(): void {
-		this.emitChanges(EVENTS.QUIZ_SESSION_STARTED, {
-			title: this.quiz.title,
-			description: this.quiz.description,
-			total: this.quiz.questions.length
-		});
+	async start(quizId: string): Promise<void> {
+		try {
+			const quiz = await this.db.getQuiz(quizId);
+			if (!quiz) {
+				this.emitChanges(EVENTS.QUIZ_LOAD_FAILED);
+				return;
+			}
+			this.quiz = quiz;
+		} catch (error) {
+			this.emitChanges(EVENTS.QUIZ_LOAD_FAILED);
+			return;
+		}
+
+		const { title, description, questions } = this.quiz;
+		this.emitChanges(EVENTS.QUIZ_SESSION_STARTED, { title, description, total: questions.length });
+
 		this.emitSessionUpdated();
 	}
 
 	submitAnswer(answer: string[]): QuizAnswerResult | null {
-		if (this.completed) return null;
+		if (this.completed || !this.quiz) return null;
 
 		const question = this.quiz.questions[this.currentIndex];
 		if (!question) return null;
@@ -44,7 +55,7 @@ export class QuizSessionModel extends Model {
 	}
 
 	goNext(): void {
-		if (this.completed) return;
+		if (this.completed || !this.quiz) return;
 
 		const hasNext = this.currentIndex < this.quiz.questions.length - 1;
 		if (hasNext) {
@@ -61,6 +72,29 @@ export class QuizSessionModel extends Model {
 		this.correctCount = 0;
 		this.completed = false;
 		this.emitSessionUpdated();
+	}
+
+	private finish(): void {
+		if (!this.quiz) return;
+
+		this.completed = true;
+		this.emitChanges(EVENTS.QUIZ_SESSION_FINISHED, {
+			correctCount: this.correctCount,
+			total: this.quiz.questions.length
+		});
+	}
+
+	private emitSessionUpdated(): void {
+		if (!this.quiz) return;
+
+		const question = this.quiz.questions[this.currentIndex];
+		if (!question) return;
+
+		this.emitChanges(EVENTS.QUIZ_SESSION_UPDATED, {
+			question,
+			currentIndex: this.currentIndex,
+			total: this.quiz.questions.length
+		});
 	}
 
 	private checkAnswer(question: QuizQuestion, answer: string[]): QuizAnswerResult {
@@ -81,24 +115,5 @@ export class QuizSessionModel extends Model {
 			}));
 
 		return { isCorrect, texts };
-	}
-
-	private emitSessionUpdated(): void {
-		const question = this.quiz.questions[this.currentIndex];
-		if (!question) return;
-
-		this.emitChanges(EVENTS.QUIZ_SESSION_UPDATED, {
-			question,
-			currentIndex: this.currentIndex,
-			total: this.quiz.questions.length
-		});
-	}
-
-	private finish(): void {
-		this.completed = true;
-		this.emitChanges(EVENTS.QUIZ_SESSION_FINISHED, {
-			correctCount: this.correctCount,
-			total: this.quiz.questions.length
-		});
 	}
 }

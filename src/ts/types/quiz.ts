@@ -25,3 +25,15 @@ export interface QuizDB extends DBSchema {
 		value: QuizRecord;
 	};
 }
+
+export interface IQuizDatabase {
+	saveQuiz(quizData: QuizData): Promise<string>;
+
+	getQuiz(id: string): Promise<QuizRecord | undefined>;
+
+	getAllQuizzes(): Promise<QuizRecord[]>;
+
+	deleteQuiz(id: string): Promise<void>;
+
+	clearAllQuizzes(): Promise<void>;
+}
