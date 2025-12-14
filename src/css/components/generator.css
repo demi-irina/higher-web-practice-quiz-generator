@@ -20,7 +20,6 @@
 
 .generator__textarea {
 	display: block;
-	box-sizing: border-box;
 	width: 100%;
 	height: 240px;
 	background-color: var(--color-surface);

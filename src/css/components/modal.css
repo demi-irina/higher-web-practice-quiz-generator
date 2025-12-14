@@ -1,7 +1,6 @@
 .modal {
 	width: calc(var(--grid-container-width) * 6 / var(--grid-columns));
 	max-width: var(--grid-container-width);
-	box-sizing: border-box;
 	position: fixed;
 	top: 50%;
 	left: 50%;
