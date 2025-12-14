@@ -19,6 +19,9 @@ export class QuizSessionModel extends Model {
 	}
 
 	async start(quizId: string): Promise<void> {
+		this.quiz = null;
+		this.resetProgress();
+
 		try {
 			const quiz = await this.db.getQuiz(quizId);
 			if (!quiz) {
@@ -68,9 +71,7 @@ export class QuizSessionModel extends Model {
 	}
 
 	restart(): void {
-		this.currentIndex = 0;
-		this.correctCount = 0;
-		this.completed = false;
+		this.resetProgress();
 		this.emitSessionUpdated();
 	}
 
@@ -82,6 +83,12 @@ export class QuizSessionModel extends Model {
 			correctCount: this.correctCount,
 			total: this.quiz.questions.length
 		});
+	}
+
+	private resetProgress(): void {
+		this.currentIndex = 0;
+		this.correctCount = 0;
+		this.completed = false;
 	}
 
 	private emitSessionUpdated(): void {
